@@ -1,0 +1,16 @@
+ </div>
+</div> <!-- /content -->
+<div id="footer">
+    <div class="container">
+        <hr>
+    <div class="span6">&copy; 2012 SILEX. All Rights Reserved.</div>
+    <div class="span4 offset1">
+      <span class="pull-right">
+      Built by
+        <a href="http://www.bugzilla.org/">Bugzilla</a>,
+        <a href="http://mojolicio.us/">Mojolicious</a> &amp;
+        <a href="http://www.perl.org/">Perl</a>
+      </span>
+    </div>
+    </div> <!-- /container -->
+</div> <!-- /footer -->

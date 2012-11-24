@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html>
-  <head><title><%= title %></title></head>
-  <body><%= content %></body>
+  <head><title><%= title %></title>
+  <meta charset="utf-8">
+  <link type="test/css" rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link type="test/css" rel="stylesheet" href="/css/bootstrap-responsive.min.css" />  
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    %= include 'header'
+    <%= content %>
+    %= include 'footer'
+  </body>
 </html>
