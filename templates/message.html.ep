@@ -1,0 +1,5 @@
+% if (my $messages = $self->stash->{messages}) {
+%    for my $msg (@{ $messages }) {
+        <li><%= $msg %></li>
+%    }
+% }

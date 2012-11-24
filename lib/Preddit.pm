@@ -10,15 +10,23 @@ sub startup {
     my $_api = Preddit::API->new( $config->{db} );
     $app->helper( api => sub { $_api->find($_[1]) } );
 
+    $app->hook( before_dispatch => sub {
+        my $c = shift;
+
+        map { $c->stash->{$_} = $c->flash($_) } grep { $c->flash($_) } 
+            qw/error message messages/;
+    });
+
     # Router
     my $r = $app->routes;
     $r->namespace(__PACKAGE__ .'::Web::Controller');
     # Normal route to controller
-    $r->route('/entry/:id')->to('Entry#index');
+    $r->route('/entry/add')->via('get')->to('Entry#add');
+    $r->route('/entry/add')->via('post')->to('Entry#post');
+    $r->route('/entry/:entry_id/edit')->via('get')->to('Entry#edit');
+    $r->route('/entry/:entry_id/edit')->via('post')->to('Entry#post');
+    $r->route('/entry/:entry_id')->to('Entry#index');
     $r->route('/entries')->to('Entry#entries');
-    $r->route('/entry/add')->to('Entry#add');
-    $r->route('/entry/:id/edit')->to('Entry#edit');
-
 }
 
 1;

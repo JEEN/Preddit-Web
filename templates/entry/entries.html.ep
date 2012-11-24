@@ -1,7 +1,16 @@
 % layout 'default';
 % title 'Welcome';
-<h2><%= $message %></h2>
-This page was generated from the template "templates/example/welcome.html.ep"
-and the layout "templates/layouts/default.html.ep",
-<a href="<%== url_for %>">click here</a> to reload the page or
-<a href="/index.html">here</a> to move forward to a static page.
+
+<div id="entries">
+  % foreach my $entry (@{ $self->stash->{entries} }) {
+  <div class="entry entry_<%= $entry->id %>">
+    <div class="title"><%= $entry->title %></div>
+    <div class="description"><%= $entry->description %></div>
+    <div class="date"><%= $entry->created_at %></div>
+  </div>
+  % }
+</div>
+
+<div id="pagenator">
+
+</div>
