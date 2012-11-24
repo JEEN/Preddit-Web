@@ -1,18 +1,24 @@
 package Preddit;
 use Mojo::Base 'Mojolicious';
+use Preddit::API;
 
-# This method will run once at server start
 sub startup {
-  my $self = shift;
+    my $app = shift;
 
-  # Documentation browser under "/perldoc"
-  $self->plugin('PODRenderer');
+    my $config = $app->plugin('Config', { file => 'preddit.conf' });
 
-  # Router
-  my $r = $self->routes;
+    my $_api = Preddit::API->new( $config->{db} );
+    $app->helper( api => sub { $_api->find($_[1]) } );
 
-  # Normal route to controller
-  $r->get('/')->to('example#welcome');
+    # Router
+    my $r = $app->routes;
+    $r->namespace(__PACKAGE__ .'::Web::Controller');
+    # Normal route to controller
+    $r->route('/entry/:id')->to('Entry#index');
+    $r->route('/entries')->to('Entry#entries');
+    $r->route('/entry/add')->to('Entry#add');
+    $r->route('/entry/:id/edit')->to('Entry#edit');
+
 }
 
 1;
