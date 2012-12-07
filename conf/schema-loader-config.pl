@@ -29,7 +29,7 @@
                     encode_check_method => 'check_password' };
             }
 
-            if ($col_name =~ /^(?:data|tags)$/) {
+            if ($col_name =~ /^(?:ext_content)$/) {
                 return { %{ $col_info }, serializer_class => 'JSON' };
             }
 

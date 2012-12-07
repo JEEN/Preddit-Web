@@ -53,6 +53,7 @@ __PACKAGE__->table("entry");
 
   data_type: 'mediumtext'
   is_nullable: 0
+  serializer_class: 'JSON'
 
 =head2 user_id
 
@@ -95,7 +96,7 @@ __PACKAGE__->add_columns(
   "description",
   { data_type => "mediumtext", is_nullable => 0 },
   "ext_content",
-  { data_type => "mediumtext", is_nullable => 0 },
+  { data_type => "mediumtext", is_nullable => 0, serializer_class => "JSON" },
   "user_id",
   {
     data_type => "integer",
@@ -137,8 +138,8 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07033 @ 2012-12-07 23:23:40
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:RPD9ILz50aSLLe15UwUU9A
+# Created by DBIx::Class::Schema::Loader v0.07033 @ 2012-12-07 23:31:39
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:bCRxHECd7y9I3EJ/ximdFw
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
