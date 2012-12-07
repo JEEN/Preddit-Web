@@ -1,8 +1,27 @@
 % layout 'default';
 % title 'Welcome';
 
-<div id="title"><%= $entry->title %></div>
-<div id="description"><%= $entry->description %></div>
-<div id="date"><%= $entry->created_at %></div>
+<div class="row">
+  <div class="span8">
+  <div id="entry">
+    <div class="">
+      <div id="title" class="row-fluid">
+        <div class="author span1"><img src="http://placehold.it/60x60" class="img-polaroid" /></div>
+        <div class="well span11"><a href="#" title="Open Item Page"><%= $entry->title %></a></div>
+      </div>
+      <p></p>
+      <div id="description">
+        <%= $entry->description %>
+      </div>
+      <div id="date"><%= $entry->created_at %></div>
+    </div>
+  </div>
 
+  <div id="pagenator">
 
+  </div>
+  </div> <!-- span8 -->
+
+%= include 'recent_entries';
+
+</div>

@@ -1,6 +1,7 @@
 package Preddit;
 use Mojo::Base 'Mojolicious';
 use Preddit::API;
+use WebService::Embedly;
 
 sub startup {
     my $app = shift;
@@ -10,6 +11,15 @@ sub startup {
     my $_api = Preddit::API->new( $config->{db} );
     $app->helper( api => sub { $_api->find($_[1]) } );
 
+    my $embedly = WebService::Embedly->new({ 
+        api_key => $config->{embedly}->{api_key} || 'e9f97946d3d311e085c84040d3dc5c07',
+        maxwidth => $config->{embedly}->{maxwidth} || 500,
+    });
+
+    $app->helper( embedly => sub {
+        return $embedly->oembed($_[1]);
+    });
+    
     $app->hook( before_dispatch => sub {
         my $c = shift;
 

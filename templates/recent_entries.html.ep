@@ -1,0 +1,29 @@
+<div class="span4">
+  <div id="social" class="well">
+    <p>Social Buttons</p>
+  </div>
+  <div id="recent_entries">
+    <h4>Hot Entries</h4>
+    <div class="entry_small">
+        <div class="title">로렘딤섬 로렘딤섬 로렘딤섬 로렘딤섬</div>
+    </div>
+    <div class="entry_small">
+        <div class="title">로렘딤섬 로렘딤섬 로렘딤섬 로렘딤섬</div>
+    </div>
+    <div class="entry_small">
+        <div class="title">로렘딤섬 로렘딤섬 로렘딤섬 로렘딤섬</div>
+    </div>
+    <div class="entry_small">
+        <div class="title">로렘딤섬 로렘딤섬 로렘딤섬 로렘딤섬</div>
+    </div>
+    <div class="entry_small">
+        <div class="title">로렘딤섬 로렘딤섬 로렘딤섬 로렘딤섬</div>
+    </div>
+    <div class="entry_small">
+        <div class="title">로렘딤섬 로렘딤섬 로렘딤섬 로렘딤섬</div>
+    </div>
+    <div class="entry_small">
+        <div class="title">로렘딤섬 로렘딤섬 로렘딤섬 로렘딤섬</div>
+    </div>
+  </div>
+</div>

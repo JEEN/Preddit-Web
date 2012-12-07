@@ -12,16 +12,16 @@ sub find_entry {
 sub get_entries {
     my ( $self, $args ) = @_;
 
-    [ $self->resultset('Entry')->search($args)->all ];
+    [ $self->resultset('Entry')->search($args, { order_by => { -desc => 'updated_at' } })->all ];
 }
 
 sub update {
     my ( $self, $args ) = @_;
 
-    $self->resultset('Entry')->update_or_create({
-        title => $args->{title},
-        description => $args->{description},
-    });
+    my %row = map { $_ => $args->{$_} } grep { defined $args->{$_} } qw/id title description user_id/; 
+    my $r = $self->resultset('Entry')->update_or_create(\%row);
+    $r->ext_content($args->{ext_content}) if $args->{ext_content};
+    $r->update;
 }
 
 __PACKAGE__->meta->make_immutable;

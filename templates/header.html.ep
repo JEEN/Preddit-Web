@@ -7,25 +7,17 @@
             <span class="icon-bar"></span>
           </a>
 
-          <a class="brand" href="./">ECRF Service Dashboard</a>
+          <a class="brand" href="./">Preddit</a>
 
-% if ($self->is_user_authenticated) {
-          <div class="nav-collapse">
-            <ul class="nav pull-right">
-              <li class="divider-vertical"></li>
-              <li class="dropdown">
-                <a data-toggle="dropdown" class="dropdown-toggle " href="#"> Jeen Lee <b class="caret"></b> </a>
-                <ul class="dropdown-menu">
-                  <li> <a href="/logout"><i class="icon-off"></i> Logout</a> </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-% }
           </div> <!-- /container -->
         </div> <!-- /navbar-inner -->
       </div> <!-- /navbar -->
-
+      <hr/>
       <div id="content">
             <div class="container">
-            <hr/>
+              <div class="row">
+               <div class="span12">
+               <h1>Preddit</h1>
+               </div>
+              </div>
+               <hr/>

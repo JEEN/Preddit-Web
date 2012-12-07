@@ -1,16 +1,45 @@
 % layout 'default';
 % title 'Welcome';
 
-<div id="entries">
-  % foreach my $entry (@{ $self->stash->{entries} }) {
-  <div class="entry entry_<%= $entry->id %>">
-    <div class="title"><%= $entry->title %></div>
-    <div class="description"><%= $entry->description %></div>
-    <div class="date"><%= $entry->created_at %></div>
-  </div>
-  % }
-</div>
+<div class="row">
+  <div class="span8">
+  
+  <div id="add_entry">
 
-<div id="pagenator">
+%= include 'message';
+
+<form action="/entry/add" method="post">
+  <input type="hidden" name="_type" value="add" />
+  <textarea name="description" placeholder="글을 입력해주세요" class="field span8" rows="3" /></textarea>
+  <button class="btn pull-right" type="submit">Save</button>
+</form>
+ 
+  </div>
+  <div class="clearfix"></div>
+  <hr/>
+
+  <div id="entries" class="media">
+  % foreach my $entry (@{ $self->stash->{entries} }) {
+    <div class="entry">
+      <a class="pull-left" href="#">
+       <img class="media-object" src="http://placehold.it/50x50" />
+     </a>
+     <div class="media-body">
+      <strong>aaa</strong>&nbsp;&nbsp;<span>1 month ago</span>  
+      <h4><%= $entry->title %></h4>
+      <div class="media well">
+        %= include 'entry/description', entry => $entry;
+      </div>
+     </div>
+    </div>
+  % }
+  </div>
+
+  <div id="pagenator">
+
+  </div>
+  </div> <!-- span8 -->
+
+%= include 'recent_entries';
 
 </div>

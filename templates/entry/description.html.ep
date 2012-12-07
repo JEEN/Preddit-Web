@@ -1,0 +1,17 @@
+% use Mojo::Util;
+% if (my $r = $entry->ext_content) {
+  <div class="media">
+    <a class="pull-left" href="<%= $r->{url} %>" target="_blank">
+      <img src="<%= $r->{thumbnail_url} %>" width="50" height="50" class="media-object">
+    </a>
+    <div class="body">
+      <a href="<%= $r->{url} %>"><h5 class="media-heading"><%= $r->{title} %></h5>
+      <span><%= $r->{description} %></span></a>
+      <%== $r->{html} ? Mojo::Util::html_unescape($r->{html}) : '' %>
+    </div>
+  </div>
+  <hr/>
+% }
+<div class="entry-content">
+  <%= $entry->description %>
+</div>

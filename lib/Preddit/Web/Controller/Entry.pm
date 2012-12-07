@@ -1,6 +1,8 @@
 package Preddit::Web::Controller::Entry;
 use Mojo::Base 'Mojolicious::Controller';
 use FormValidator::Lite;
+use URI::Find;
+use utf8;
 
 sub index {
     my $self = shift;
@@ -42,7 +44,7 @@ sub post {
     );
 
     $fv->check(
-        title       => [qw/ NOT_NULL /],
+   #     title       => [qw/ NOT_NULL /],
         description => [qw/ NOT_NULL /], 
     );
 
@@ -51,13 +53,24 @@ sub post {
         if ($self->param('entry_id')) {
             return $self->redirect_to('/entry/'.$self->param('entry_id').'/edit');
         }
-        return $self->redirect_to('/entry/add');
+        return $self->redirect_to('/entries');
     }
 
+
     my $row = {
-        title       => $self->param('title'),
-        description => $self->param('description')
+        title       => $self->param('title') || "",
+        description => $self->param('description'),
     };
+
+    my @uris;
+    my $finder = URI::Find->new(sub {
+        my ($uri) = shift;
+        push @uris, $uri;
+    });
+    my $description = $self->param('description');
+    $finder->find(\$description);
+
+    $row->{ext_content} = $self->embedly($uris[0]) if scalar @uris;
 
     if ($self->param('entry_id') && $self->param('_type') && $self->param('_type') eq 'edit') {
         $row->{id}  = $self->param('entry_id');
@@ -66,7 +79,7 @@ sub post {
     my $entry = $self->api('Entry')->update($row);
 
     $self->flash( ok => 1 , message => '글을 올렸습니다' );
-    $self->redirect_to('/entry/'.$entry->id);
+    $self->redirect_to('/entries');
 }
 
 1;

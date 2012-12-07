@@ -2,9 +2,22 @@
 <html>
   <head><title><%= title %></title>
   <meta charset="utf-8">
-  <link type="test/css" rel="stylesheet" href="/css/bootstrap.min.css" />
-  <link type="test/css" rel="stylesheet" href="/css/bootstrap-responsive.min.css" />  
+  <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link type="text/css" rel="stylesheet" href="/css/bootstrap-responsive.min.css" /> 
   <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/js/jquery-1.8.2.min.js"></script>
+  <script type="text/javascript">
+  $(function () {
+    jQuery.fn.autolink = function () {
+      return this.each( function(){
+        var re = /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g;
+        $(this).html( $(this).html().replace(re, '<a href="$1">$1</a> ') );
+      });
+    };
+
+    $('.entry-content').autolink();
+  });
+  </script>
   </head>
   <body>
     %= include 'header'
