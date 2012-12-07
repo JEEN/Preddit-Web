@@ -1,12 +1,12 @@
 use utf8;
-package Preddit::Schema::Result::Entry;
+package Preddit::Schema::Result::User;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
 
 =head1 NAME
 
-Preddit::Schema::Result::Entry
+Preddit::Schema::Result::User
 
 =cut
 
@@ -22,11 +22,11 @@ use MooseX::NonMoose;
 use namespace::autoclean;
 extends 'Preddit::Schema::ResultBase';
 
-=head1 TABLE: C<entry>
+=head1 TABLE: C<user>
 
 =cut
 
-__PACKAGE__->table("entry");
+__PACKAGE__->table("user");
 
 =head1 ACCESSORS
 
@@ -37,38 +37,37 @@ __PACKAGE__->table("entry");
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 title
+=head2 email
+
+  data_type: 'varchar'
+  default_value: (empty string)
+  is_nullable: 1
+  size: 128
+
+=head2 passwd
+
+  data_type: 'varchar'
+  default_value: (empty string)
+  encode_args: {algorithm => "SHA-1",format => "hex"}
+  encode_check_method: 'check_password'
+  encode_class: 'Digest'
+  encode_column: 1
+  is_nullable: 0
+  size: 64
+
+=head2 name
 
   data_type: 'varchar'
   default_value: (empty string)
   is_nullable: 0
-  size: 255
+  size: 64
 
-=head2 description
-
-  data_type: 'mediumtext'
-  is_nullable: 0
-
-=head2 ext_content
-
-  data_type: 'mediumtext'
-  is_nullable: 0
-
-=head2 user_id
-
-  data_type: 'integer'
-  default_value: 0
-  extra: {unsigned => 1}
-  is_nullable: 0
-
-=head2 created_at
+=head2 creaed_at
 
   data_type: 'datetime'
   datetime_undef_if_invalid: 1
   default_value: '0000-00-00 00:00:00'
-  inflate_datetime: 1
   is_nullable: 0
-  set_on_create: 1
 
 =head2 updated_at
 
@@ -90,27 +89,27 @@ __PACKAGE__->add_columns(
     is_auto_increment => 1,
     is_nullable => 0,
   },
-  "title",
-  { data_type => "varchar", default_value => "", is_nullable => 0, size => 255 },
-  "description",
-  { data_type => "mediumtext", is_nullable => 0 },
-  "ext_content",
-  { data_type => "mediumtext", is_nullable => 0 },
-  "user_id",
+  "email",
+  { data_type => "varchar", default_value => "", is_nullable => 1, size => 128 },
+  "passwd",
   {
-    data_type => "integer",
-    default_value => 0,
-    extra => { unsigned => 1 },
-    is_nullable => 0,
+    data_type           => "varchar",
+    default_value       => "",
+    encode_args         => { algorithm => "SHA-1", format => "hex" },
+    encode_check_method => "check_password",
+    encode_class        => "Digest",
+    encode_column       => 1,
+    is_nullable         => 0,
+    size                => 64,
   },
-  "created_at",
+  "name",
+  { data_type => "varchar", default_value => "", is_nullable => 0, size => 64 },
+  "creaed_at",
   {
-    data_type                 => "datetime",
+    data_type => "datetime",
     datetime_undef_if_invalid => 1,
-    default_value             => "0000-00-00 00:00:00",
-    inflate_datetime          => 1,
-    is_nullable               => 0,
-    set_on_create             => 1,
+    default_value => "0000-00-00 00:00:00",
+    is_nullable => 0,
   },
   "updated_at",
   {
@@ -137,8 +136,8 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07033 @ 2012-12-07 23:23:40
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:RPD9ILz50aSLLe15UwUU9A
+# Created by DBIx::Class::Schema::Loader v0.07033 @ 2012-12-07 23:27:25
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:aj83/rCVH6wmVU6n663Rcg
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
