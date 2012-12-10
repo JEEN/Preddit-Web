@@ -1,6 +1,11 @@
 % layout 'default';
 % title 'Welcome';
 
+<script>
+$(function () {
+  $('span.prettydate').prettyDate();
+});
+</script>
 <div class="row">
   <div class="span8">
   
@@ -25,7 +30,7 @@
        <img class="media-object" src="http://placehold.it/50x50" />
      </a>
      <div class="media-body">
-      <strong>aaa</strong>&nbsp;&nbsp;<span>1 month ago</span>  
+      <strong>aaa</strong>&nbsp;&nbsp;<span class="prettydate" title="<%= $entry->updated_at %>"><%= $entry->updated_at %></span>  
       <h4><%= $entry->title %></h4>
       <div class="media well">
         %= include 'entry/description', entry => $entry;
