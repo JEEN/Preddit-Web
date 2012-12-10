@@ -1,8 +1,9 @@
 package Preddit::Web::Controller::Entry;
 use Mojo::Base 'Mojolicious::Controller';
 use FormValidator::Lite;
-use URI::Find;
+use URI::Find::UTF8;
 use utf8;
+use Encode;
 
 sub index {
     my $self = shift;
@@ -63,7 +64,7 @@ sub post {
     };
 
     my @uris;
-    my $finder = URI::Find->new(sub {
+    my $finder = URI::Find::UTF8->new(sub {
         my ($uri) = shift;
         push @uris, $uri;
     });
