@@ -12,8 +12,8 @@ sub startup {
     $app->helper( api => sub { $_api->find($_[1]) } );
 
     my $embedly = WebService::Embedly->new({ 
-        api_key => $config->{embedly}->{api_key} || 'e9f97946d3d311e085c84040d3dc5c07',
-        maxwidth => $config->{embedly}->{maxwidth} || 500,
+        api_key => $config->{plugin}->{embedly}->{api_key},
+        maxwidth => $config->{plugin}->{embedly}->{max_width},
     });
 
     $app->helper( embedly => sub {
