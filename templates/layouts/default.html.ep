@@ -7,6 +7,7 @@
   <script type="text/javascript" src="/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/js/jquery-1.8.2.min.js"></script>
   <script type="text/javascript" src="/js/jquery.prettydate.js"></script>
+  <script type="text/javascript" src="/js/jquery.autosize-min.js"></script>
   <script type="text/javascript">
   $(function () {
     jQuery.fn.autolink = function () {
@@ -17,6 +18,7 @@
     };
 
     $('.entry-content').autolink();
+    $('textarea').autosize();
   });
   </script>
   </head>
